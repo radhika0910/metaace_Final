@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+  <link rel="icon" type="image/png" href="assets/images/mACE_logo_favicon.ico">
+  <link rel="canonical" href="https://3dviewer.net">
+    <link rel="stylesheet" href="./style.css">
+
+  <title>MetaACE 3D Viewer</title>
+  <!-- meta start -->
+  <!-- meta end -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/bootstrap-icons.min.css">
+  <!-- website start -->
+  <link rel="stylesheet" type="text/css" href="../build/website_dev/o3dv.website.min.css">
+  <script type="text/javascript" src="../build/website_dev/o3dv.website.min.js"></script>
+  <!-- website end -->
+  <!-- plugins start -->
+  <!-- plugins end -->
+  <!-- analytics start -->
+  <script type="text/javascript">
+    OV.SetWebsiteEventHandler((eventName, eventLabel, eventParams) => {
+      console.log({
+        eventName: eventName,
+        eventLabel: eventLabel,
+        eventParams: eventParams
+      });
+    });
+  </script>
+  <style>
+    table {
+      width: 85%;
+      margin-left: 160px;
+      margin-right: 100px;
+    }
+    th {
+      padding: 8px;
+      text-align: left;
+    }
+    td {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.14);
+      padding: 8px;
+      margin-top: 10px;
+      text-align: left;
+    }
+    th:first-child,
+    td:first-child {
+      border-left: none;
+    }
+    th:last-child,
+    td:last-child {
+      border-right: none;
+    }
+    .sidebar {
+      position: fixed;
+      width: 160px;
+      left: 0;
+      height: 100%;
+      background-color: #dbdbdb;
+      transition: all 0.5s ease;
+    }
+    .sidebar a {
+      display: block;
+      height: 50px;
+      width: 100%;
+      color: #353535;
+      line-height: 50px;
+      padding-left: 10px;
+      box-sizing: border-box;
+      border-left: 5px solid transparent;
+      font-family: 'Lato', sans-serif;
+      transition: all 0.5s ease;
+      text-decoration: none;
+    }
+    .sidebar a i {
+      font-size: 15px;
+      margin-right: 16px;
+    }
+    .sidebar a:hover {
+      background-color: #e0e0e0;
+    }
+    /* Task Bar */
+    .taskbar {
+      width: 2.5%;
+      min-width: 10px;
+      background-color: #dbdbdb;
+      position: fixed;
+      top: 90px;
+      right: 0;
+      height: 100%;
+      z-index: 9999;
+    }
+    .taskbar a {
+      display: block;
+      padding: 10px;
+      color: #000;
+      text-decoration: none;
+    }
+    .taskbar a i {
+      margin-right: 8px;
+    }
+    .taskbar a:hover {
+      background-color: #e0e0e0;
+    }
+  </style>
+  <!-- analytics end -->
+  <!-- website init start -->
+  <script type="text/javascript">
+    OV.StartWebsite('../libs');
+  </script>
+  <!-- website init end -->
+</head>
+<body style="background-color:white;">
+  <input type="file" id="open_file" style="display:none;" multiple></input>
+  <div class="header" id="header">
+    <div class="title">
+      <div class="title_left">
+        <p>
+          <a href="index.html">
+           <img style="width: 165px; float: left; margin-top: 7px;" class="logo_image" src="assets/images/mACE_logo_text.png" />
+          </a>
+<p style="position: absolute; right: 85px; top: 18px;"><a href="filemangment.html" onclick="toggleProject()" style="color: black; font-weight: bold; text-decoration: none;">Projects</a></p>
+<a href="profile.html">
+       <img src="./user.png" alt="" style="height: 28px; position: absolute; top: 15px; right: 2%;border-left: 1px solid #888888; padding-left: 10px; " onclick="toggleMenu()">
+   </a>
+      
+      
+        </p>
+      </div>
+     
+      <script>
+        // JavaScript code to toggle the visibility of the dropdown menu
+        const button = document.querySelector('button');
+        const dropdown = document.querySelector('ul');
+        button.addEventListener('click', () => {
+          dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+        });
+      </script>
+      
+      <div class="main_file_name only_full_width" id="main_file_name"></div>
+    </div>
+    <div class="toolbar" id="toolbar"></div>
+  </div>
+  <div class="main" id="main">
+    <div class="main_left_container only_full_width" id="main_left_container">
+      <div class="main_navigator ov_panel_set_container" id="main_navigator"></div>
+      <div class="main_splitter" id="main_navigator_splitter"></div>
+    </div>
+    <div class="main_viewer" id="main_viewer"></div>
+    <div class="main_right_container only_full_width" id="main_right_container">
+      <div class="main_splitter" id="main_sidebar_splitter"></div>
+      <div class="main_sidebar ov_panel_set_right_container" id="main_sidebar"></div>
+    </div>
+  </div>
+  <div id="intro">
+    <div class="sidebar">
+      <a href="#">
+        <span>OverView</span>
+      </a>
+      <a href="#">
+        <span>File Managment</span>
+      </a>
+    </div>
+    <table style="margin-left: 169px;margin-right: 19px;">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Last Modified</th>
+          <th>File version</th>
+          <th>File Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Paradise</td>
+          <td>Nov 21, 2017</td>
+          <td>#1234</td>
+          <td>----</td>
+        </tr>
+        <tr>
+          <td>Row 2, Column 1</td>
+          <td>Row 2, Column 2</td>
+          <td>Row 2, Column 3</td>
+          <td>---</td>
+        </tr>
+        <!-- Add more rows as needed -->
+      </tbody>
+    </table>
+    <table>
+      <thead>
+        <tr>
+          <th>Column</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Row 1, Column 1</td>
+        </tr>
+        <tr>
+          <td>Row 2, Column 1</td>
+        </tr>
+        <!-- Add more rows as needed -->
+      </tbody>
+    </table>
+    <div class="taskbar">
+      <a href="profile.html">
+        <span style="font-size: 30px;">&#x1F464;</span>
+      </a>
+      <a href="filemangment.html">
+        <a href="nothing.html">
+          <span style="font-size: 30px;">&#x1F4CA;</span>
+        </a>
+      </a>
+      <a href="#">
+        <a href="nothing.html">
+          <span style="font-size: 30px;">🗂️</span>
+        </a>
+      </a>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#sidebarCollapse').on('click', function() {
+        $('#intro .sidebar').toggleClass('active');
+      });
+    });
+  </script>
+</body>
+</html>

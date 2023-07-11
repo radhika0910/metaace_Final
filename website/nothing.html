@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+</head>
+<body>
+  <center>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2 col-sm-12">
+          <div class="form">
+            <form action="#">
+              <h1>Welcome back</h1>
+
+              <div class="input-group col-md-8 col-md-offset-2">
+                <input type="email" name="email" class="input email" autocomplete="off">
+                <label>E-Mail Address</label>
+              </div>
+
+              <div class="input-group col-md-8 col-md-offset-2">
+                <input type="password" name="password" class="input password">
+                <label>Password</label>
+              </div>
+
+              <div class="input-group">
+                <div class="col-md-4 col-md-offset-4">
+                  <button type="button" onclick="checkCookie()">LOGIN</button>
+                </div>
+              </div>
+              <div class="forgot">
+                <a href="#">Forgot Password?</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </center>
+
+  <script>
+    // Function to check the presence of the cookie
+    function checkCookie() {
+      fetch('https://nee-833q.onrender.com/check-cookie')
+        .then(response => {
+          if (response.ok) {
+            // Redirect to the desired page on successful login
+            window.location.href = '/index.html';
+          } else {
+            alert('Invalid credentials!'); // Show an error message if the login is unsuccessful
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    }
+  </script>
+</body>
+</html>

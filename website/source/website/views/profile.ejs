@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Account Settings</title>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body>
+	<section class="py-5 my-5">
+		<div class="container">
+			<nav class="navbar">
+				<div class="navdiv">
+					<div class="logo"> <a href="#"><img src="./mACE_logo_text.png" alt=""></a></div>
+					<ul>
+						<li><a href="#" onclick="toggleProject()">Projects</a></li>
+					</ul>
+					<div class="profile"> <img src="./user.png" alt="" onclick="toggleMenu()"></div>
+				</div>
+			</nav>
+			<nav>
+				<span>
+					.
+				</span>
+			</nav>
+
+			<div class="bg-white shadow rounded-lg d-block d-sm-flex">
+				<div class="profile-tab-nav border-right">
+					<div class="p-4">
+						<div class="img-circle text-center mb-3">
+							<img src="./user.png" alt="Image" class="shadow">
+						</div>
+						<h4 class="text-center">Radhika</h4>
+						<span id="mail">abc@gmail.com</span>
+					</div>
+					<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+						<a class="nav-link active" class="account-tab" data-toggle="pill" href="#account" role="tab" aria-controls="account" aria-selected="true">
+							<i class="fa  text-center mr-1"></i> 
+							Account Settings
+						</a>
+						<a class="nav-link" class="domain-tab" data-toggle="pill" href="#domain" role="tab" aria-controls="domain" aria-selected="false">
+							<i class="fa  text-center mr-1"></i> 
+							Domains
+						</a>
+						<a class="nav-link" id="email-tab" data-toggle="pill" href="#email" role="tab" aria-controls="email" aria-selected="false">
+							<i class="fa  text-center mr-1"></i> 
+							Business Email
+						</a>
+						<a class="nav-link" id="vouchers-tab" data-toggle="pill" href="#vouchers" role="tab" aria-controls="vouchers" aria-selected="false">
+							<i class="fa  text-center mr-1"></i> 
+							Vouchers
+						</a>
+						<a class="nav-link" id="billing-tab" data-toggle="pill" href="#billing" role="tab" aria-controls="billing" aria-selected="false">
+							<i class="fa  text-center mr-1"></i> 
+							Billing History
+						</a>
+						<a class="nav-link" id="subscription-tab" data-toggle="pill" href="#subscription" role="tab" aria-controls="subscription" aria-selected="false">
+							<i class="fa fa- text-center mr-1"></i>
+							Premium Subscriptions
+						</a>
+						<a class="nav-link" id="payment-tab" data-toggle="pill" href="#payment" role="tab" aria-controls="payment" aria-selected="false">
+							<i class="fa fa- text-center mr-1"></i>
+							Payments Methods
+						</a>
+						<a class="nav-link" id="log_out-tab" data-toggle="pill" href="#log_out" role="tab" aria-controls="log_out" aria-selected="false">
+							<i class="fa fa- text-center mr-1 "></i>
+							Log out
+						</a>
+					</div>
+				</div>
+				<div class="tab-content p-4 p-md-5" id="v-pills-tabContent">
+					<div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
+						<h3 class="mb-4">Account Settings</h3>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>First Name</label>
+								  	<input type="text" class="form-control" value="Radhika">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Last Name</label>
+								  	<input type="text" class="form-control" value="Bhoyar">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Email</label>
+								  	<input type="text" class="form-control" value="abc@gmail.com">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Phone number</label>
+								  	<input type="text" class="form-control" value="+915698978521">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Account name</label>
+								  	<input type="text" class="form-control" value="xyz01">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Language</label>
+								  	<input type="text" class="form-control" value="English">
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+								  	<label>Review</label>
+									<textarea class="form-control" rows="4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore vero enim error similique quia numquam ullam corporis officia odio repellendus aperiam consequatur laudantium porro voluptatibus, itaque laboriosam veritatis voluptatum distinctio!</textarea>
+								</div>
+							</div>
+						</div>
+						<div>
+							<button class="btn btn-primary">Update</button>
+							<button class="btn btn-light">Cancel</button>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="domain" role="tabpanel" aria-labelledby="domain-tab">
+						<h3 class="mb-4">Domain</h3>
+						<!-- <div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Old password</label>
+								  	<input type="password" class="form-control">
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>New password</label>
+								  	<input type="password" class="form-control">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Confirm new password</label>
+								  	<input type="password" class="form-control">
+								</div>
+							</div>
+						</div>
+						<div>
+							<button class="btn btn-primary">Update</button>
+							<button class="btn btn-light">Cancel</button>
+						</div> -->
+					</div>
+					<div class="tab-pane fade" id="email" role="tabpanel" aria-labelledby="email-tab">
+						<h3 class="mb-4">Business Email</h3>
+						<!-- <div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Login</label>
+								  	<input type="text" class="form-control">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Two-factor auth</label>
+								  	<input type="text" class="form-control">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="" id="recovery">
+										<label class="form-check-label" for="recovery">
+										Recovery
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div>
+							<button class="btn btn-primary">Update</button>
+							<button class="btn btn-light">Cancel</button>
+						</div> -->
+					</div>
+					<div class="tab-pane fade" id="vouchers" role="tabpanel" aria-labelledby="vouchers-tab">
+						<h3 class="mb-4">Vouchers</h3>
+						<!-- <div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="" id="app-check">
+										<label class="form-check-label" for="app-check">
+										App check
+										</label>
+									</div>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="" id="defaultCheck2" >
+										<label class="form-check-label" for="defaultCheck2">
+										Lorem ipsum dolor sit.
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div>
+							<button class="btn btn-primary">Update</button>
+							<button class="btn btn-light">Cancel</button>
+						</div> -->
+					</div>
+					<div class="tab-pane fade" id="billing" role="tabpanel" aria-labelledby="billing-tab">
+						<h3 class="mb-4">Billing History</h3>
+						<!-- <div class="form-group">
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" id="notification1">
+								<label class="form-check-label" for="notification1">
+									Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum accusantium accusamus, neque cupiditate quis
+								</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" id="notification2" >
+								<label class="form-check-label" for="notification2">
+									hic nesciunt repellat perferendis voluptatum totam porro eligendi.
+								</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" id="notification3" >
+								<label class="form-check-label" for="notification3">
+									commodi fugiat molestiae tempora corporis. Sed dignissimos suscipit
+								</label>
+							</div>
+						</div>
+						<div>
+							<button class="btn btn-primary">Update</button>
+							<button class="btn btn-light">Cancel</button>
+						</div> -->
+					</div>
+					<div class="tab-pane fade" id="subscription" role="tabpanel" aria-labelledby="subscription-tab">
+						<h3 class="mb-4">Premium Subscriptions</h3>
+					</div>
+					<div class="tab-pane fade" id="payment" role="tabpanel" aria-labelledby="payment-tab">
+						<h3 class="mb-4">Payments Methods</h3>
+					</div>
+					<div class="tab-pane fade" id="log_out" role="tabpanel" aria-labelledby="log_out-tab">
+						<h3 class="mb-4">Log out</h3>
+					</div>
+				</div>
+				<!-- <div class="range-slider">
+					<input type="range" class="range-slider_range" value="5" min="0" max="10">
+					<span class="range-slider_value">0</span>
+				</div> -->
+			</div>
+		</div>
+		<div class="sub-menu-wrap" id="subMenu">
+			<div class="sub-menu" role="tablist" aria-orientation="vertical">
+				<div class="user-info">
+					<img src="./img/user.png">
+					<h3>Xyz</h3>
+				</div>
+				<hr>
+				<a  class="sub-menu-link" class="account-tab" data-toggle="pill" href="#account" role="tab" aria-controls="account" aria-selected="true">
+					<p>Account Settings</p>
+				</a>
+				<hr>
+				<a class="sub-menu-link" class="domain-tab" data-toggle="pill" href="#domain" role="tab" aria-controls="domain" aria-selected="false">
+					<p>Domains</p>
+				</a>
+				<a href="#email" class="sub-menu-link" data-toggle="pill" role="tab" aria-controls="email" aria-selected="false">
+					<p>Business Email</p>
+				</a>
+				<a href="#vouvhers" class="sub-menu-link" data-toggle="pill" role="tab" aria-controls="vouchers" aria-selected="false">
+					<p>Vouchers</p>
+				</a>
+				<a href="#billing" class="sub-menu-link" data-toggle="pill" role="tab" aria-controls="billing" aria-selected="false">
+					<p>Billing History</p>
+				</a>
+				<a href="#subscription" class="sub-menu-link" data-toggle="pill" role="tab" aria-controls="subscription" aria-selected="false">
+					<p>Premium Subscriptions</p>
+				</a>
+				<a href="#payment" class="sub-menu-link" data-toggle="pill" role="tab" aria-controls="payment" aria-selected="false">
+					<p>Payments Methods</p>
+				</a>
+				<hr>
+				<a href="#" class="sub-menu-link">
+					<p>Create a New Account</p>
+				</a>
+				<a href="#" class="sub-menu-link">
+					<p>Log out</p>
+				</a>
+			</div>
+		</div>
+		<div class="sub-project-wrap" id="subProject">
+			<div class="sub-project">
+					<a href="#" class="sub-project-link">
+						<p>Project-1</p>
+					</a>
+					<hr>
+					<a href="#" class="sub-project-link">
+						<p>Project-2</p>
+					</a>
+					<hr>
+					<a href="#" class="sub-project-link">
+						<p>Project-3</p>
+					</a>
+			</div>
+		</div>
+	</section>
+
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="./script.js"></script>
+</body>
+</html>

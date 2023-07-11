@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <link rel="icon" type="image/png" href="assets/images/mACE_logo_favicon.ico">
+    <link rel="canonical" href="https://3dviewer.net">
+    <link rel="stylesheet" href="./style.css">
+    <title>MetaACE 3D Viewer</title>
+
+
+    <!-- meta start -->
+    <!-- meta end -->
+
+    <!-- website start -->
+    <link rel="stylesheet" type="text/css" href="../build/website_dev/o3dv.website.min.css">
+    <script type="text/javascript" src="../build/website_dev/o3dv.website.min.js"></script>
+    <!-- website end -->
+    <!-- plugins start -->
+    <!-- plugins end -->
+
+
+    <!-- analytics start -->
+    
+    <script type="text/javascript">
+        OV.SetWebsiteEventHandler ((eventName, eventLabel, eventParams) => {
+            console.log ({
+                eventName : eventName,
+                eventLabel : eventLabel,
+                eventParams : eventParams
+            });
+        });
+
+        / Function to check the cookie
+        function checkCookie() {
+            fetch('https://nee-833q.onrender.com/check-cookie')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.cookieExists) {
+                        showProfileButton();
+                    } else {
+                        showLoginButton();
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        // Function to show the profile button
+        function showProfileButton() {
+            const headerButtons = document.getElementById('header_buttons');
+            headerButtons.innerHTML = `
+                <img src="./user.png" alt="" style="height: 35px; position: absolute; top: 8px; right: 2%; border-left: 1px solid #888888; padding-left: 10px;" onclick="toggleUserMenu()">
+            `;
+        }
+
+        // Function to show the login button
+        function showLoginButton() {
+            const headerButtons = document.getElementById('header_buttons');
+            headerButtons.innerHTML = `
+                <button style="background-color: #3f5fab; color: white; border: none; cursor: pointer; border-radius: 8px; padding: 4px 40px;">
+                    <a href="login.html" style="text-decoration: none; color: white;">Login</a>
+                </button>
+            `;
+        }
+
+        // Check the cookie when the page loads
+        window.addEventListener('load', checkCookie);
+    </script>
+
+    <!-- analytics end -->
+
+    <!-- website init start -->
+    <script type="text/javascript">
+        OV.StartWebsite ('../libs');
+    </script>
+    <!-- website init end -->
+
+</head>
+
+<body style="background-color:white;">
+    <input type="file" id="open_file" style="display:none;" multiple></input>
+    <div class="header" id="header">
+        <div class="title">
+            <div class="title_left">
+                <a href="index.html">
+                    <img style="width:165px; height:auto; float:left;" class="logo_image" src="assets/images/mACE_logo_text.png" />
+                </a>
+                <ul class="header_menu">
+                    <li style=" display: flex; justify-content: right;"><a href="filemangment.html" onclick="toggleProject()">Projects</a></li>
+                </ul>
+            </div>
+            <div class="title_right" id="header_buttons" style="position: absolute; z-index: 2; top: 4px; right: 6px;">
+                <img src="./user.png" alt="" style="height: 35px; position: absolute; top: 8px; right: 2%; border-left: 1px solid #888888; padding-left: 10px;" onclick="toggleUserMenu()">
+            </div>
+        </div>
+        <div class="toolbar" id="toolbar"></div>
+    </div>
+    <div class="main" id="main">
+        <div class="main_left_container only_full_width" id="main_left_container">
+            <div class="main_navigator ov_panel_set_container" id="main_navigator"></div>
+            <div class="main_splitter" id="main_navigator_splitter"></div>
+        </div>
+        <div class="main_viewer" id="main_viewer"></div>
+        <div class="main_right_container only_full_width" id="main_right_container">
+            <div class="main_splitter" id="main_sidebar_splitter"></div>
+            <div class="main_sidebar ov_panel_set_right_container" id="main_sidebar"></div>
+        </div>
+    </div>
+    <div class="intro ov_thin_scrollbar" id="intro">
+        <div class="intro_content">
+            <div class="intro_logo">
+                <img style="width:381px; height:auto; max-width:85%; margin-left: auto; margin-right: auto; margin-bottom:20px" class="intro_logo" src="assets/images/mACE_logo_text.png" />
+                <div class="intro_dragdrop_text">Drag and drop 3D models here.</div>
+            </div>
+            <div class="intro_formats">
+                <p style="font-size:25px; margin-bottom:15px;">Digitising the real estate industry from design to execution.</p>
+            </div>
+        </div>
+    </div>
+    <div class="sub-menu-wrap" id="subMenu">
+        <div class="sub-menu">
+            <div class="user-info">
+                <img src="./user.png">
+                <h3>Radhika </h3>
+            </div>
+            <hr>
+            <a class="sub-menu-link" class="account-tab" data-toggle="pill" href="profile.html" role="tab" aria-controls="account" aria-selected="true">
+                <p>Account Settings</p>
+            </a>
+            <hr>
+            <a class="sub-menu-link" class="domain-tab" data-toggle="pill" href="#domain" role="tab" aria-controls="domain" aria-selected="false">
+                <p>Domains</p>
+            </a>
+            <a href="#email" class="sub-menu-link" data-toggle="pill" role="tab" aria-controls="email" aria-selected="false">
+                <p>Business Email</p>
+            </a>
+            <a href="#vouvhers" class="sub-menu-link" data-toggle="pill" role="tab" aria-controls="vouchers" aria-selected="false">
+                <p>Vouchers</p>
+            </a>
+            <a href="#billing" class="sub-menu-link" data-toggle="pill" role="tab" aria-controls="billing" aria-selected="false">
+                <p>Billing History</p>
+            </a>
+            <a href="#subscription" class="sub-menu-link" data-toggle="pill" role="tab" aria-controls="subscription" aria-selected="false">
+                <p>Premium Subscriptions</p>
+            </a>
+            <a href="#payment" class="sub-menu-link" data-toggle="pill" role="tab" aria-controls="payment" aria-selected="false">
+                <p>Payments Methods</p>
+            </a>
+            <hr>
+            <a href="#" class="sub-menu-link">
+                <p>Create a New Account</p>
+            </a>
+            <a href="index.html" class="sub-menu-link">
+                <p>Log out</p>
+            </a>
+        </div>
+    </div>
+    <script>
+        // Function to toggle the visibility of the user menu
+        function toggleUserMenu() {
+            const userMenu = document.getElementById('subMenu');
+            userMenu.style.display = userMenu.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Function to toggle the visibility of the projects menu
+        function toggleProject() {
+            const projectMenu = document.getElementById('projectMenu');
+            projectMenu.style.display = projectMenu.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Check if the cookie is present and show the appropriate button
+        // Replace false with the actual value of the check-cookie variable
+
+      
+    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+<script src="./script.js"></script>
+</html>
