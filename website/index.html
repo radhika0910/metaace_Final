@@ -6,15 +6,16 @@
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <link rel="icon" type="image/png" href="assets/images/mACE_logo_favicon.ico">
     <link rel="canonical" href="https://3dviewer.net">
-    <link rel="stylesheet" href="./style.css">
+    <!-- <link rel="stylesheet" href="./style.css"/> -->
     <title>MetaACE 3D Viewer</title>
 
     <!-- meta start -->
     <!-- meta end -->
 
     <!-- website start -->
-    <link rel="stylesheet" type="text/css" href="../build/website_dev/o3dv.website.min.css">
-    <script type="text/javascript" src="../build/website_dev/o3dv.website.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../website/build/website_dev/o3dv.website.min.css">
+    <link rel="stylesheet" href="/website/source/website/css/custom.css">
+    <script type="text/javascript" src="../website/build/website_dev/o3dv.website.min.js"></script>
     <!-- website end -->
     <!-- plugins start -->
     <!-- plugins end -->
@@ -90,12 +91,12 @@
                     </a>
                 </p>
             </div>
-            <div id="header_buttons"></div>
+            <div id="header_buttons" class="title_right"></div>
         </div>
         <div class="toolbar" id="toolbar"></div>
     </div>
 
-    <div class="sub-menu-wrap" id="subMenu">
+    <!-- <div class="sub-menu-wrap" id="subMenu">
         <div class="sub-menu">
             <div class="user-info">
                 <img src="./user.png">
@@ -123,7 +124,7 @@
                 <p>Log out</p>
             </a>
         </div>
-    </div>
+    </div> -->
 
     <div class="main" id="main">
         <div class="main_left_container only_full_width" id="main_left_container">
@@ -141,10 +142,31 @@
         <div class="intro_content">
             <div class="intro_logo">
                 <img style="width: 381px; height: auto; max-width: 85%; margin-left: auto; margin-right: auto; margin-bottom: 20px" class="intro_logo" src="assets/images/mACE_logo_text.png" />
-                <div class="intro_dragdrop_text">Drag and drop 3D models here.</div>
+                <div class="intro_dragdrop_text" style="color: black;">Drag and drop 3D models here.</div>
             </div>
             <div class="intro_formats">
-                <p style="font-size: 25px; margin-bottom: 15px;">Digitising the real estate industry from design to execution.</p>
+                <p style="font-size: 25px; margin-bottom: 15px; color: black;">Digitising the real estate industry from design to execution.</p>
+                <div style="font-size:22px; margin-bottom:12px; color:black;" class="intro_formats_title">Check an example file:</div>
+                <div class="intro_file_formats">
+                    <a href="#model=assets/models/solids.obj,assets/models/solids.mtl">obj</a>
+                    <a href="#model=assets/models/cubes.3ds,assets/models/texture.png">3ds</a>
+                    <a href="#model=assets/models/utah_teapot.stl">stl</a>
+                    <a href="#model=assets/models/cow.ply">ply</a>
+                    <a href="#model=assets/models/DamagedHelmet.glb">gltf</a>
+                    <a href="#model=assets/models/cube.off">off</a>
+                    <a href="#model=assets/models/RhinoLogo.3dm">3dm</a>
+                    <a href="#model=assets/models/Y_Bot.fbx">fbx</a>
+                    <a href="#model=assets/models/X_Bot.dae">dae</a>
+                    <a href="#model=assets/models/extrusion3.wrl">wrl</a>
+                    <a href="#model=assets/models/rhombicuboctahedron.3mf">3mf</a>
+                    <a href="#model=assets/models/rook.amf">amf</a>
+                    <a href="#model=assets/models/haus.ifc">ifc</a>
+                    <a href="#model=assets/models/as1_pe_203.brep">brep</a>
+                    <a href="#model=assets/models/as1_pe_203.stp">step</a>
+                    <a href="#model=assets/models/as1_pe_203.igs">iges</a>
+                    <a href="#model=assets/models/ArchDetail.FCStd">fcstd</a>
+                    <a href="#model=assets/models/MultipleMeshes.bim">bim</a>
+                </div>
             </div>
         </div>
     </div>
