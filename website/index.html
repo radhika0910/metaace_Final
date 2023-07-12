@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="./style.css">
     <title>MetaACE 3D Viewer</title>
 
-
     <!-- meta start -->
     <!-- meta end -->
 
@@ -20,15 +19,13 @@
     <!-- plugins start -->
     <!-- plugins end -->
 
-
     <!-- analytics start -->
-    
     <script type="text/javascript">
-        OV.SetWebsiteEventHandler ((eventName, eventLabel, eventParams) => {
-            console.log ({
-                eventName : eventName,
-                eventLabel : eventLabel,
-                eventParams : eventParams
+        OV.SetWebsiteEventHandler((eventName, eventLabel, eventParams) => {
+            console.log({
+                eventName: eventName,
+                eventLabel: eventLabel,
+                eventParams: eventParams
             });
         });
 
@@ -50,30 +47,28 @@
 
         // Function to show the profile button
         function showProfileButton() {
-            const headerButtons = document.getElementById('headbuttons');
+            const headerButtons = document.getElementById('header_buttons');
             headerButtons.innerHTML = `
-            <p style="position: absolute; right: 85px; top: 18px;">
-                        <a href="filemangment.html" onclick="toggleProject()" style="color: black; font-weight: bold; text-decoration: none;">Projects</a>
-                    
-                <img src="./user.png" alt="" style="height: 35px; position: absolute; top: 8px; right: 2%; border-left: 1px solid #888888; padding-left: 10px;" onclick="toggleUserMenu()">
-           </p> `;
+                <p style="position: absolute; right: 85px; top: 18px;">
+                    <a href="filemangment.html" onclick="toggleProject()" style="color: black; font-weight: bold; text-decoration: none;">Projects</a>
+                    <img src="./user.png" alt="" style="height: 35px; border-left: 1px solid #888888; padding-left: 10px;" onclick="toggleUserMenu()">
+                </p>
+            `;
         }
 
         // Function to show the login button
-       // Function to show the login button
-function showLoginButton() {
-    const headerButtons = document.getElementById('headbuttons');
-    headerButtons.innerHTML = `
-        <button id="loginButton" style="background-color: #3f5fab; color: white; border: none; cursor: pointer; border-radius: 8px; padding: 4px 40px; position: absolute; top: 15px; right: 2%;">
-            <a href="login.html" style="text-decoration: none; color: white;">Login</a>
-        </button>
-    `;
-}
+        function showLoginButton() {
+            const headerButtons = document.getElementById('header_buttons');
+            headerButtons.innerHTML = `
+                <button id="loginButton" style="background-color: #3f5fab; color: white; border: none; cursor: pointer; border-radius: 8px; padding: 4px 40px; position: absolute; top: 18px; right: 2%;">
+                    <a href="login.html" style="text-decoration: none; color: white;">Login</a>
+                </button>
+            `;
+        }
 
         // Check the cookie when the page loads
         window.addEventListener('load', checkCookie);
     </script>
-
     <!-- analytics end -->
 
     <!-- website init start -->
@@ -84,8 +79,8 @@ function showLoginButton() {
 
 </head>
 
-<body style="background-color:white;">
-    <input type="file" id="open_file" style="display:none;" multiple></input>
+<body style="background-color: white;">
+    <input type="file" id="open_file" style="display:none;" multiple>
     <div class="header" id="header">
         <div class="title">
             <div class="title_left">
@@ -93,10 +88,9 @@ function showLoginButton() {
                     <a href="index.html">
                         <img style="width: 165px; float: left; margin-top: 6px;" class="logo_image" src="assets/images/mACE_logo_text.png" />
                     </a>
-                    
-                    <div id="headbuttons" style:"right:2px;"></div>
                 </p>
             </div>
+            <div id="header_buttons"></div>
         </div>
         <div class="toolbar" id="toolbar"></div>
     </div>
@@ -146,16 +140,15 @@ function showLoginButton() {
     <div class="intro ov_thin_scrollbar" id="intro">
         <div class="intro_content">
             <div class="intro_logo">
-                <img style="width:381px; height:auto; max-width:85%; margin-left: auto; margin-right: auto; margin-bottom:20px" class="intro_logo" src="assets/images/mACE_logo_text.png" />
+                <img style="width: 381px; height: auto; max-width: 85%; margin-left: auto; margin-right: auto; margin-bottom: 20px" class="intro_logo" src="assets/images/mACE_logo_text.png" />
                 <div class="intro_dragdrop_text">Drag and drop 3D models here.</div>
             </div>
             <div class="intro_formats">
-                <p style="font-size:25px; margin-bottom:15px;">Digitising the real estate industry from design to execution.</p>
+                <p style="font-size: 25px; margin-bottom: 15px;">Digitising the real estate industry from design to execution.</p>
             </div>
         </div>
     </div>
 
-   
     <script>
         // Function to toggle the visibility of the user menu
         function toggleUserMenu() {
@@ -168,38 +161,6 @@ function showLoginButton() {
             const projectMenu = document.getElementById('projectMenu');
             projectMenu.style.display = projectMenu.style.display === 'none' ? 'block' : 'none';
         }
-
-        // Function to check the cookie and update the UI accordingly
-        function checkCookie() {
-            fetch('https://nee-833q.onrender.com/check-cookie')
-                .then(response => response.json())
-                .then(data => {
-                    const userIcon = document.getElementById('userIcon');
-                    const headerButtons = document.getElementById('header_buttons');
-                    const loginButton = document.getElementById('loginButton');
-
-                    if (data.cookieExists) {
-                        userIcon.style.display = 'block';
-                        headerButtons.innerHTML = `
-                            <img src="./user.png" alt="" style="height: 35px; position: absolute; top: 8px; right: 2%; border-left: 1px solid #888888; padding-left: 10px;" onclick="toggleUserMenu()">
-                        `;
-                        loginButton.style.display = 'none';
-                    } else {
-                        userIcon.style.display = 'none';
-                        headerButtons.innerHTML = `
-                            <button id="loginButton" style="background-color: #3f5fab; color: white; border: none; cursor: pointer; border-radius: 8px; padding: 4px 40px;">
-                                <a href="login.html" style="text-decoration: none; color: white;">Login</a>
-                            </button>
-                        `;
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        }
-
-        // Check the cookie when the page loads
-        window.addEventListener('load', checkCookie);
 
         // Function to delete the cookie and redirect to the login page
         function logout() {
