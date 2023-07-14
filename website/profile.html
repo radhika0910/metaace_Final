@@ -3,12 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Account Settings</title>
+    <title>MetaAce 3D Viewer</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="./style.css">
+    
 </head>
+
 
 <body>
     <section class="py-5 my-5">
@@ -18,9 +20,13 @@
                      <div class="title_left">
         <p>
           <a href="index.html">
-           <img style="width: 165px; float: left; margin-top: 7px;" class="logo_image" src="assets/images/mACE_logo_text.png" />
+           <img style="width: 165px; float: left; margin-top: 5px;" class="logo_image" src="assets/images/mACE_logo_text.png" />
           </a>
-<p style="position: absolute; right: 5px; top: 18px;"><a href="filemangment.html" onclick="toggleProject()" style="color: black; font-weight: bold; text-decoration: none;">Projects</a></p>
+<p style="position: absolute; right: 5px; top: 18px;"><a href="#filemangment" onclick="toggleProject()" style="color: black; font-weight: bold; text-decoration: none;">
+    <div>
+        <svg xmlns="http://www.w3.org/2000/svg" style="height:40px; position: absolute; right:10px;top:7.5px; " viewBox="0 0 256 256" id="dots-nine"><rect width="256" height="256" fill="none"></rect><circle cx="60" cy="60" r="10"></circle><circle cx="128" cy="60" r="10"></circle><circle cx="196" cy="60" r="10"></circle><circle cx="60" cy="128" r="10"></circle><circle cx="128" cy="128" r="10"></circle><circle cx="196" cy="128" r="10"></circle><circle cx="60" cy="196" r="10"></circle><circle cx="128" cy="196" r="10"></circle><circle cx="196" cy="196" r="10"></circle></svg>
+    </div>
+</a></p>
 <a href="profile.html">
    </a>
       
@@ -47,13 +53,18 @@
                         <span id="mail">abc@gmail.com</span>
                     </div>
                     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                        <a class="nav-link active" class="account-tab" data-toggle="pill" href="#account" role="tab" aria-controls="account" aria-selected="true">
+                        <a class="nav-link active" id="account-tab" data-toggle="pill" href="#account" role="tab" aria-controls="account" aria-selected="true">
                             <i class="fa  text-center mr-1"></i>
                             Account Settings
                         </a>
-
-
-
+                        <a class="nav-link" id="user-tab" data-toggle="pill" href="#user" role="tab" aria-controls="user" aria-selected="false">
+                            <i class="fa text-center mr-1"></i>
+                            User
+                        </a>
+                        <a class="nav-link" id="organization-tab" data-toggle="pill" href="#organization" role="tab" aria-controls="organization" aria-selected="false">
+                            <i class="fa text-center mr-1"></i>
+                            Organization
+                        </a>
                         <a class="nav-link" id="billing-tab" data-toggle="pill" href="#billing" role="tab" aria-controls="billing" aria-selected="false">
                             <i class="fa  text-center mr-1"></i>
                             Billing History
@@ -124,12 +135,14 @@
                             <button class="btn btn-light">Cancel</button>
                         </div>
                     </div>
-
-
-
+                    <div class="tab-pane fade" id="user" role="tabpanel" aria-labelledby="user-tab">
+                        <h3 class="mb-4">User</h3>
+                    </div>
+                    <div class="tab-pane fade" id="organization" role="tabpanel" aria-labelledby="organization-tab">
+                        <h3 class="mb-4">Organization</h3>
+                    </div>
                     <div class="tab-pane fade" id="billing" role="tabpanel" aria-labelledby="billing-tab">
                         <h3 class="mb-4">Billing History</h3>
-
                     </div>
                     <div class="tab-pane fade" id="subscription" role="tabpanel" aria-labelledby="subscription-tab">
                         <h3 class="mb-4">Premium Subscriptions</h3>
@@ -156,15 +169,13 @@
                     <p>Account Settings</p>
                 </a>
                 <hr>
-
-
                 <a href="#billing" class="sub-menu-link" data-toggle="pill" role="tab" aria-controls="billing" aria-selected="false">
                     <p>Billing History</p>
                 </a>
                 <a href="#subscription" class="sub-menu-link" data-toggle="pill" role="tab" aria-controls="subscription" aria-selected="false">
                     <p>Premium Subscriptions</p>
                 </a>
-                <a href="#payment" class="sub-menu-link" data-toggle="pill" role="tab" aria-controls="payment" aria-selected="false">
+                <a href="#payment" class="nav-link" data-toggle="pill" role="tab" aria-controls="payment" aria-selected="false">
                     <p>Payments Methods</p>
                 </a>
                 <hr>
@@ -176,17 +187,17 @@
                 </a>
             </div>
         </div>
-        <div class="sub-project-wrap" id="subProject">
+        <div class="sub-project-wrap" id="subProject" style="position: absolute; right: 0;">
             <div class="sub-project">
-                <a href="#" class="sub-project-link">
+                <a href="filemangment.html" class="sub-project-link">
                     <p>Project-1</p>
                 </a>
                 <hr>
-                <a href="#" class="sub-project-link">
+                <a href="filemangment.html" class="sub-project-link">
                     <p>Project-2</p>
                 </a>
                 <hr>
-                <a href="#" class="sub-project-link">
+                <a href="filemangment.html" class="sub-project-link">
                     <p>Project-3</p>
                 </a>
             </div>

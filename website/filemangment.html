@@ -6,8 +6,9 @@
   <link rel="icon" type="image/png" href="assets/images/mACE_logo_favicon.ico">
   <link rel="canonical" href="https://3dviewer.net">
   <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./style.scss">
   <title>MetaACE 3D Viewer</title>
-  <!-- meta start -->
+  <link href='https://unpkg.com/css.gg@2.0.0/icons/css/math-plus.css' rel='stylesheet'>    <!-- meta start -->
   <!-- meta end -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/bootstrap-icons.min.css">
@@ -103,7 +104,19 @@
     .taskbar a:hover {
       background-color: #e0e0e0;
     }
-    /* .sub-menu-wrap {
+    .new_logo{
+      height: 40px;
+      width: 70px;
+      border: 1px solid;
+      position: relative;
+      top: 15px;
+      left: 10px;
+      display: flex;
+      align-items: center;
+      border-radius: 10px;
+      justify-content: space-around;
+    }
+    /* .sub-folder-wrap {
       position: fixed;
       right: 0;
       top: 50px;
@@ -114,19 +127,19 @@
       transition: all 0.5s ease;
       transform: translateX(200px);
     }
-    .sub-menu-wrap.active {
+    .sub-folder-wrap.active {
       transform: translateX(0);
     }
-    .sub-menu {
+    .sub-folder {
       padding: 20px;
     }
-    .sub-menu a {
+    .sub-folder a {
       display: block;
       margin-bottom: 10px;
       color: #000;
       text-decoration: none;
     }
-    .sub-menu a:hover {
+    .sub-folder a:hover {
       color: #525252;
     }
     .user-info {
@@ -160,12 +173,13 @@
                             <a href="index.html">
                                 <img style="width: 165px; float: left; margin-top: 6px;" class="logo_image" src="assets/images/mACE_logo_text.png" />
                             </a>
-                            <p style="position: absolute; right: 85px; top: 18px;"><a href="filemangment.html" onclick="toggleProject()" style="color: black; font-weight: bold; text-decoration: none;">&#x2630;</a></p>
+                            <p style="position: absolute; right: 85px; top: 18px;"><a href="filemangment.html" onclick="toggleProject()" style="color: black; font-weight: bold; text-decoration: none;">
+                              <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" style="height:40px; position: absolute; right:70px; top:8.5px; " viewBox="0 0 256 256" id="dots-nine"><rect width="256" height="256" fill="none"></rect><circle cx="60" cy="60" r="10"></circle><circle cx="128" cy="60" r="10"></circle><circle cx="196" cy="60" r="10"></circle><circle cx="60" cy="128" r="10"></circle><circle cx="128" cy="128" r="10"></circle><circle cx="196" cy="128" r="10"></circle><circle cx="60" cy="196" r="10"></circle><circle cx="128" cy="196" r="10"></circle><circle cx="196" cy="196" r="10"></circle></svg>
+                            </div>
+                            </a></p>
                             
                                 <img src="./user.png" alt="" style="height: 28px; position: absolute; top: 15px; right: 2%;border-left: 1px solid #888888; padding-left: 10px; " onclick="toggleMenu()">
-                        
-
-
                         </p>
                     </div>
     </div>
@@ -195,58 +209,71 @@
       <div class="main_sidebar ov_panel_set_right_container" id="main_sidebar"></div>
     </div>
   </div>
-  <div id="intro">
-    <div class="sidebar">
-      <a href="#">
-        <span>OverView</span>
+  <div class="new_logo" onclick="toggleFolder()">
+    <i class="gg-math-plus"></i>
+    <span>New</span>
+  </div>
+   <div id="intro">
+    <div class="sidebar nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+      <a class="overview-tab nav-link" data-toggle="pill" href="#overview" role="tab" aria-controls="overview" aria-selected="false">
+        Overview
       </a>
-      <a href="#">
-        <span>File Managment</span>
+      <a class="docs-tab" data-toggle="pill" href="#docs" role="tab" aria-controls="docs" aria-selected="false">
+        Document
       </a>
     </div>
-    <div  style="margin-left: 169px; margin-right: 19px; border-radius: 20px; overflow: hidden;">
-    <table  style="margin-left: 169px; margin-right: 19px; border-radius: 20px; overflow: hidden;">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Last Modified</th>
-          <th>File version</th>
-          <th>File Type</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Paradise</td>
-          <td>Nov 21, 2017</td>
-          <td>#1234</td>
-          <td>----</td>
-        </tr>
-        <tr>
-          <td>Row 2, Column 1</td>
-          <td>Row 2, Column 2</td>
-          <td>Row 2, Column 3</td>
-          <td>---</td>
-        </tr>
-        <!-- Add more rows as needed -->
-      </tbody>
-    </table>
-    <table>
-      <thead>
-        <tr>
-          <th>Column</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Row 1, Column 1</td>
-        </tr>
-        <tr>
-          <td>Row 2, Column 1</td>
-        </tr>
-        <!-- Add more rows as needed -->
-      </tbody>
-    </table>
+    <div id="v-pills-tabContent">
+      <div class="tab-pane" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+        <h3>Overview</h3>
+        <div  style="margin-left: 169px; margin-right: 19px; border-radius: 20px; overflow: hidden;">
+          <table  style="margin-left: 169px; margin-right: 19px; border-radius: 20px; overflow: hidden;">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Last Modified</th>
+                <th>File version</th>
+                <th>File Type</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Paradise</td>
+                <td>Nov 21, 2017</td>
+                <td>#1234</td>
+                <td>----</td>
+              </tr>
+              <tr>
+                <td>Row 2, Column 1</td>
+                <td>Row 2, Column 2</td>
+                <td>Row 2, Column 3</td>
+                <td>---</td>
+              </tr>
+               <!-- Add more rows as needed -->
+            </tbody>
+          </table>
+          <table>
+            <thead>
+              <tr>
+                <th>Column</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Row 1, Column 1</td>
+              </tr>
+              <tr>
+                <td>Row 2, Column 1</td>
+              </tr> 
+              <!-- Add more rows as needed-->
+             </tbody>
+          </table>
+          </div>
+      </div>
+      <div class="tab-pane" id="docs" role="tabpanel" aria-labelledby="docs-tab">
+        <h3>Document</h3>
+      </div>
     </div>
+    
     <div class="taskbar">
       <a href="profile.html">
         <span style="font-size: 30px;"></span>
@@ -262,8 +289,8 @@
         </a>
       </a>
     </div>
-  </div>
- 
+  </div>  
+  
     <div class="sub-menu-wrap" id="subMenu">
         <div class="sub-menu">
             <div class="user-info">
@@ -290,6 +317,22 @@
 </a>
         </div>
     </div>
+    <div class="sub-folder-wrap" id="subFolder">
+      <a href="#" class="sub-folder-link">
+        <i class="gg-folder-newfolder"></i>
+        <p>New Folder</p>
+      </a>
+      <hr>
+      <a href="#" class="sub-folder-link">
+        <i class="gg-folder-fileupload"></i>
+        <p>File Upload</p>
+      </a>
+      <a href="#" class="sub-folder-link">
+        <i class="gg-folder-folderupload"></i>
+        <p>Folder Upload</p>
+      </a>
+    </div>
+
     <script>
         // Function to delete the cookie and redirect to the index.html page
         function deleteCookieAndRedirect() {
