@@ -1,99 +1,146 @@
 // server.js
 import express from 'express';
 import mongoose from 'mongoose';
-import jwt from 'jsonwebtoken';
+import session from 'express-session';
 import bodyParser from 'body-parser';
-import cookieParser from 'cookie-parser';
 import bcrypt from 'bcrypt';
+import User from './models/user.js';
+import Session from './models/sesssion.js';
 
+// Connect to MongoDB
+mongoose.connect('mongodb://localhost/user_management', { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    console.log('Connected to MongoDB');
+  })
+  .catch((error) => {
+    console.error('Error connecting to MongoDB:', error);
+  });
+
+// Create Express app
 const app = express();
-const PORT = 3000;
 
-// Middleware to parse request bodies and cookies
+// Middleware
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(cookieParser());
 
-// Connect to the MongoDB database
-async function connectToDatabase() {
+// Set up sessions
+app.use(
+  session({
+    secret: 'your-session-secret',
+    resave: true,
+    saveUninitialized: false,
+  })
+);
+
+// Enable CORS
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:8080'); // Replace with your login page URL
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  next();
+});
+
+
+// Routes
+app.post('/signup', async (req, res) => {
   try {
-    await mongoose.connect('mongodb+srv://demo:Radhika123456@3dviewer.fs33ycy.mongodb.net/', {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
+    const { username, password } = req.body;
+
+    // Check if user already exists
+    const existingUser = await User.findOne({ username });
+    if (existingUser) {
+      return res.status(409).json({ message: 'User already exists' });
+    }
+
+    // Create a new user
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = new User({
+      username,
+      password: hashedPassword,
     });
-    console.log('Connected to the database');
+    await newUser.save();
+
+    return res.status(201).json({ message: 'User created successfully' });
   } catch (error) {
-    console.error('Error connecting to the database:', error);
-    process.exit(1); // Exit the process with a failure code
+    console.error('Error during signup:', error);
+    return res.status(500).json({ message: 'Internal server error' });
   }
-}
+});
 
-import userRouter from './routes/user.route.js';
-app.use('/users', userRouter);
-
-// Middleware to authenticate token
-function authenticateToken(req, res, next) {
-  const token = req.headers.authorization || req.query.token || req.cookies.token;
-
-  if (!token) {
-    return res.status(401).json({ message: 'Missing token' });
-  }
-
+app.post('/login', async (req, res) => {
   try {
-    const decoded = jwt.verify(token, 'secretKey');
-    req.user = decoded;
-    next();
-  } catch (error) {
-    return res.status(403).json({ message: 'Invalid token' });
-  }
-}
+    const { username, password } = req.body;
 
-// Authentication endpoint
-app.post('/api/login', async (req, res) => {
-  const { username, password } = req.body;
-
-  try {
-    // Retrieve the user from the database based on the username
-    const user = await user.findOne({ username });
-
+    // Check if user exists
+    const user = await User.findOne({ username });
     if (!user) {
-      return res.json({ success: false, message: 'Username not found.' });
+      return res.status(401).json({ message: 'Invalid credentials' });
     }
 
-    // Compare the provided password with the stored hashed password
-    const passwordMatch = await bcrypt.compare(password, user.password);
-
-    if (passwordMatch) {
-      // If authentication is successful, generate a token
-      const token = jwt.sign({ username }, 'secretKey', { expiresIn: '24h' });
-
-      // Return the token as a response
-      return res.json({ success: true, message: 'User authenticated successfully.', token });
-    } else {
-      return res.json({ success: false, message: 'Incorrect password.' });
+    // Check password
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      return res.status(401).json({ message: 'Invalid credentials' });
     }
-  } catch (error) {
-    console.error('Error occurred during login:', error);
-    return res.json({ success: false, message: 'Error occurred during login.' });
-  }
-});
 
-
-// Protected route example
-app.get('/api/dashboard', authenticateToken, (req, res) => {
-  res.send('Welcome to the dashboard');
-});
-
-// Start the server and connect to the database
-async function startServer() {
-  try {
-    await connectToDatabase();
-    app.listen(PORT, () => {
-      console.log(`Server is running on port ${PORT}`);
+    // Create a new session
+    const sessionToken = generateSessionToken();
+    const sessionExpiration = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
+    const newSession = new Session({
+      token: sessionToken,
+      expiration: sessionExpiration,
     });
+    await newSession.save();
+
+    // Associate the session with the user
+    user.session = newSession._id;
+    await user.save();
+
+    // Set the session token as a cookie
+    req.session.token = sessionToken;
+
+    return res.status(200).json({ message: 'Logged in successfully' });
   } catch (error) {
-    console.error('Error starting the server:', error);
-    process.exit(1); // Exit the process with a failure code
+    console.error('Error during login:', error);
+    return res.status(500).json({ message: 'Internal server error' });
   }
+});
+
+app.get('/logout', async (req, res) => {
+  try {
+    // Clear the session token cookie
+    req.session.token = null;
+
+    // Remove the associated session from the user
+    const userId = req.session.userId;
+    if (userId) {
+      const user = await User.findById(userId);
+      if (user) {
+        user.session = null;
+        await user.save();
+      }
+    }
+
+    return res.status(200).json({ message: 'Logged out successfully' });
+  } catch (error) {
+    console.error('Error during logout:', error);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+// Generate a random session token
+function generateSessionToken() {
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let token = '';
+  for (let i = 0; i < 32; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    token += characters[randomIndex];
+  }
+  return token;
 }
 
-startServer();
+// Start the server
+app.listen(3000, () => {
+  console.log('Server started on port 3000');
+});

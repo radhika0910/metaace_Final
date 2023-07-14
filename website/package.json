@@ -40,8 +40,8 @@
 	],
 	"scripts": {
 		"start": "npm run build_website_dev && concurrently \"npm run start_server\" \"http-server\"",
-  "start_server": "node source/website/server.js",
-  "test": "mocha test",
+		"start_server": "node source/website/server.js",
+		"test": "mocha test",
 		"lint": "eslint source",
 		"lint_fix": "eslint source --fix",
 		"update_libs": "npm install && run-python3 tools/update_libs.py",
@@ -77,9 +77,11 @@
 	},
 	"dependencies": {
 		"@simonwep/pickr": "1.8.2",
+		"connect-mongo": "^5.0.0",
 		"cookie-parser": "^1.4.6",
 		"draco3d": "1.5.6",
 		"express-openid-connect": "^2.16.0",
+		"express-session": "^1.17.3",
 		"fflate": "0.8.0",
 		"i": "^0.3.7",
 		"jsonwebtoken": "^9.0.1",

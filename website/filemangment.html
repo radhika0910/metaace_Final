@@ -29,120 +29,88 @@
     });
   </script>
   <style>
-    table {
-      width: 85%;
-      margin-left: 160px;
-      margin-right: 100px;
-    }
-    th {
-      padding: 8px;
-      text-align: left;
-    }
-    td {
-      border-bottom: 1px solid rgba(0, 0, 0, 0.14);
-      padding: 8px;
-      margin-top: 10px;
-      text-align: left;
-    }
-    th:first-child,
-    td:first-child {
-      border-left: none;
-    }
-    th:last-child,
-    td:last-child {
-      border-right: none;
-    }
-    .sidebar {
-      position: fixed;
-      width: 160px;
-      left: 0;
-      height: 100%;
-      background-color: #dbdbdb;
-      transition: all 0.5s ease;
-    }
-    .sidebar a {
-      display: block;
-      height: 50px;
-      width: 100%;
-      color: #353535;
-      line-height: 50px;
-      padding-left: 10px;
-      box-sizing: border-box;
-      border-left: 5px solid transparent;
-      font-family: 'Lato', sans-serif;
-      transition: all 0.5s ease;
-      text-decoration: none;
-    }
-    .sidebar a i {
-      font-size: 15px;
-      margin-right: 16px;
-    }
-    .sidebar a:hover {
-      background-color: #e0e0e0;
-    }
-    /* Task Bar */
-    .taskbar {
-      width: 2.5%;
-      min-width: 10px;
-      background-color: #dbdbdb;
-      position: fixed;
-      top: 96px;
-      right: 0;
-      height: 100%;
-      z-index: 0;
-    }
-    .taskbar a {
-      display: block;
-      padding: 10px;
-      color: #000;
-      text-decoration: none;
-    }
-    .taskbar a i {
-      margin-right: 8px;
-    }
-    .taskbar a:hover {
-      background-color: #e0e0e0;
-    }
-    /* .sub-menu-wrap {
-      position: fixed;
-      right: 0;
-      top: 50px;
-      background: #dbdbdb;
-      z-index: 999;
-      width: 200px;
-      height: 100%;
-      transition: all 0.5s ease;
-      transform: translateX(200px);
-    }
-    .sub-menu-wrap.active {
-      transform: translateX(0);
-    }
-    .sub-menu {
-      padding: 20px;
-    }
-    .sub-menu a {
-      display: block;
-      margin-bottom: 10px;
-      color: #000;
-      text-decoration: none;
-    }
-    .sub-menu a:hover {
-      color: #525252;
-    }
-    .user-info {
-      display: flex;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-    .user-info img {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      margin-right: 10px;
-    }
-    .user-info h3 {
-      margin: 0;
-    } */
+    <style>
+  table {
+    width: 85%;
+    margin-left: 160px;
+    margin-right: 100px;
+    font-family: Quicksand, Helvetica, sans-serif; /* Added font-family */
+  }
+  th {
+    padding: 8px;
+    text-align: left;
+  }
+  td {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.14);
+    padding: 8px;
+    margin-top: 10px;
+    text-align: left;
+  }
+  th:first-child,
+  td:first-child {
+    border-left: none;
+  }
+  th:last-child,
+  td:last-child {
+    border-right: none;
+  }
+  .sidebar {
+    position: fixed;
+    width: 160px;
+    left: 0;
+    height: 100%;
+    background-color: #dbdbdb;
+    transition: all 0.5s ease;
+    font-family: Quicksand, Helvetica, sans-serif; /* Added font-family */
+  }
+  .sidebar a {
+    display: block;
+    height: 50px;
+    width: 100%;
+    color: #353535;
+    line-height: 50px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    border-left: 5px solid transparent;
+    font-family: 'Lato', sans-serif;
+    transition: all 0.5s ease;
+    text-decoration: none;
+    font-family: Quicksand, Helvetica, sans-serif; /* Added font-family */
+  }
+  .sidebar a i {
+    font-size: 15px;
+    margin-right: 16px;
+  }
+  .sidebar a:hover {
+    background-color: #e0e0e0;
+  }
+  /* Task Bar */
+  .taskbar {
+    width: 2.5%;
+    min-width: 10px;
+    background-color: #dbdbdb;
+    position: fixed;
+    top: 96px;
+    right: 0;
+    height: 100%;
+    z-index: 0;
+    font-family: Quicksand, Helvetica, sans-serif; /* Added font-family */
+  }
+  .taskbar a {
+    display: block;
+    padding: 10px;
+    color: #000;
+    text-decoration: none;
+    font-family: Quicksand, Helvetica, sans-serif; /* Added font-family */
+  }
+  .taskbar a i {
+    margin-right: 8px;
+  }
+  .taskbar a:hover {
+    background-color: #e0e0e0;
+  }
+</style>
+
   </style>
   <!-- analytics end -->
   <!-- website init start -->
@@ -230,22 +198,7 @@
         <!-- Add more rows as needed -->
       </tbody>
     </table>
-    <table>
-      <thead>
-        <tr>
-          <th>Column</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Row 1, Column 1</td>
-        </tr>
-        <tr>
-          <td>Row 2, Column 1</td>
-        </tr>
-        <!-- Add more rows as needed -->
-      </tbody>
-    </table>
+    
     </div>
     <div class="taskbar">
       <a href="profile.html">
@@ -275,16 +228,7 @@
     <p><a href="profile.html" style="color: #525252;">Account Settings</a></p>
 </a>
 <hr>
-<a href="#billing" class="sub-menu-link" data-toggle="pill" role="tab" aria-controls="billing" aria-selected="false">
-    <p>Billing History</p>
-</a>
-<a href="#subscription" class="sub-menu-link" data-toggle="pill" role="tab" aria-controls="subscription" aria-selected="false">
-    <p>Premium Subscriptions</p>
-</a>
-<a href="#payment" class="sub-menu-link" data-toggle="pill" role="tab" aria-controls="payment" aria-selected="false">
-    <p>Payments Methods</p>
-</a>
-<hr>
+
 <a href="index.html" class="sub-menu-link" style="text-align: left;">
     <p>Log out</p>
 </a>
