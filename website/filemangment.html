@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/bootstrap-icons.min.css">
   <!-- website start -->
   <link rel="stylesheet" type="text/css" href="./build/website_dev/o3dv.website.min.css">
-    <link rel="stylesheet" href="/website/source/website/css/custom.css">
+    <link rel="stylesheet" href="./source/website/css/custom.css">
     <script type="text/javascript" src="./build/website_dev/o3dv.website.min.js"></script>
   <!-- website end -->
   <!-- plugins start -->
@@ -28,90 +28,9 @@
       });
     });
   </script>
-  <style>
-    <style>
-  table {
-    width: 85%;
-    margin-left: 160px;
-    margin-right: 100px;
-    font-family: Quicksand, Helvetica, sans-serif; /* Added font-family */
-  }
-  th {
-    padding: 8px;
-    text-align: left;
-  }
-  td {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.14);
-    padding: 8px;
-    margin-top: 10px;
-    text-align: left;
-  }
-  th:first-child,
-  td:first-child {
-    border-left: none;
-  }
-  th:last-child,
-  td:last-child {
-    border-right: none;
-  }
-  .sidebar {
-    position: fixed;
-    width: 160px;
-    left: 0;
-    height: 100%;
-    background-color: #dbdbdb;
-    transition: all 0.5s ease;
-    font-family: Quicksand, Helvetica, sans-serif; /* Added font-family */
-  }
-  .sidebar a {
-    display: block;
-    height: 50px;
-    width: 100%;
-    color: #353535;
-    line-height: 50px;
-    padding-left: 10px;
-    box-sizing: border-box;
-    border-left: 5px solid transparent;
-    font-family: 'Lato', sans-serif;
-    transition: all 0.5s ease;
-    text-decoration: none;
-    font-family: Quicksand, Helvetica, sans-serif; /* Added font-family */
-  }
-  .sidebar a i {
-    font-size: 15px;
-    margin-right: 16px;
-  }
-  .sidebar a:hover {
-    background-color: #e0e0e0;
-  }
-  /* Task Bar */
-  .taskbar {
-    width: 2.5%;
-    min-width: 10px;
-    background-color: #dbdbdb;
-    position: fixed;
-    top: 96px;
-    right: 0;
-    height: 100%;
-    z-index: 0;
-    font-family: Quicksand, Helvetica, sans-serif; /* Added font-family */
-  }
-  .taskbar a {
-    display: block;
-    padding: 10px;
-    color: #000;
-    text-decoration: none;
-    font-family: Quicksand, Helvetica, sans-serif; /* Added font-family */
-  }
-  .taskbar a i {
-    margin-right: 8px;
-  }
-  .taskbar a:hover {
-    background-color: #e0e0e0;
-  }
-</style>
+  
 
-  </style>
+ 
   <!-- analytics end -->
   <!-- website init start -->
   <script type="text/javascript">
@@ -125,7 +44,7 @@
     <div class="title">
       <div class="title_left">
                         <p>
-                            <a href="index.html">
+                            <a href="inde2.html">
                                 <img style="width: 165px; float: left; margin-top: 6px;" class="logo_image" src="assets/images/mACE_logo_text.png" />
                             </a>
                             <p style="position: absolute; right: 85px; top: 18px;"><a href="filemangment.html" onclick="toggleProject()" style="color: black; font-weight: bold; text-decoration: none;">&#x2630;</a></p>
@@ -182,7 +101,9 @@
           <th>File Type</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="data-table-body" style="z-index: 99999;">
+       
+        <!-- Add more rows as needed -->
         <tr>
           <td>Paradise</td>
           <td>Nov 21, 2017</td>
@@ -195,26 +116,11 @@
           <td>Row 2, Column 3</td>
           <td>---</td>
         </tr>
-        <!-- Add more rows as needed -->
       </tbody>
     </table>
     
     </div>
-    <div class="taskbar">
-      <a href="profile.html">
-        <span style="font-size: 30px;"></span>
-      </a>
-      <a href="filemangment.html">
-        <a href="nothing.html">
-          <span style="font-size: 30px;"></span>
-        </a>
-      </a>
-      <a href="#">
-        <a href="nothing.html">
-          <span style="font-size: 30px;"></span>
-        </a>
-      </a>
-    </div>
+    
   </div>
  
     <div class="sub-menu-wrap" id="subMenu">
@@ -247,8 +153,54 @@
                 .catch(error => {
                     console.error('Error:', error);
                 });
+
+                
         }
+
+
     </script>
+    <script>
+      // Fetch the JSON data from the API
+      fetch('http://localhost:3000/fileUpload')
+        .then(response => response.json())
+        .then(data =>
+        {
+          // Get a reference to the table body
+          const tableBody = document.getElementById('data-table-body');
+
+          // Loop through the data and create table rows
+          data.forEach(file =>
+          {
+            // Create a new row element
+            const row = document.createElement('tr');
+
+            // Create and populate table cells for each data field
+            const nameCell = document.createElement('td');
+            nameCell.textContent = file.filename;
+            row.appendChild(nameCell);
+
+            const lastModifiedCell = document.createElement('td');
+            lastModifiedCell.textContent = file.lastModified;
+            row.appendChild(lastModifiedCell);
+
+            const versionCell = document.createElement('td');
+            versionCell.textContent = file.version;
+            row.appendChild(versionCell);
+
+            const typeCell = document.createElement('td');
+            typeCell.textContent = file.contentType;
+            row.appendChild(typeCell);
+
+            // Append the row to the table body
+            tableBody.appendChild(row);
+          });
+        })
+        .catch(error =>
+        {
+          console.error('Error:', error);
+        });
+    </script>
+
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>

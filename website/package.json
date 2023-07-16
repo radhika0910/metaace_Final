@@ -39,7 +39,7 @@
 		"website/assets/envmaps/*"
 	],
 	"scripts": {
-		"start": "npm run build_website_dev && concurrently \"npm run start_server\" \"http-server\"",
+		"start": "npm run build_website_dev && concurrently \"npm run start_server\" \"http-server\" --trace-deprecation",
 		"start_server": "node source/website/server.js",
 		"test": "mocha test",
 		"lint": "eslint source",
@@ -80,12 +80,14 @@
 		"connect-mongo": "^5.0.0",
 		"cookie-parser": "^1.4.6",
 		"draco3d": "1.5.6",
+		"express-handlebars": "^7.0.7",
 		"express-openid-connect": "^2.16.0",
 		"express-session": "^1.17.3",
 		"fflate": "0.8.0",
 		"i": "^0.3.7",
 		"jsonwebtoken": "^9.0.1",
 		"mongoose": "^7.3.1",
+		"nodemon": "^3.0.1",
 		"occt-import-js": "0.0.18",
 		"rhino3dm": "7.15.0",
 		"three": "0.153.0",

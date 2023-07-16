@@ -6,9 +6,14 @@ import bodyParser from 'body-parser';
 import bcrypt from 'bcrypt';
 import User from './models/user.js';
 import Session from './models/sesssion.js';
+import uploadSchema from './models/schema.js';
+import fileRouter from './routes/filerouter.js';
+import path from 'path';
+import hbs from 'express-handlebars';
+
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost/user_management', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb+srv://demo:Radhika123456@3dviewer.fs33ycy.mongodb.net/', { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log('Connected to MongoDB');
   })
@@ -22,6 +27,10 @@ const app = express();
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+
+app.use(express.json());
+
 
 // Set up sessions
 app.use(
@@ -42,7 +51,12 @@ app.use((req, res, next) => {
 });
 
 
+
 // Routes
+
+app.use('/fileUpload', fileRouter);
+
+
 app.post('/signup', async (req, res) => {
   try {
     const { username, password } = req.body;

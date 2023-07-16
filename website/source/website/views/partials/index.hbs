@@ -1,0 +1,55 @@
+<section class="section my-4">
+    <div class="container text-center">
+        <div class="title py-5">
+            <h1>Node File Uploader</h1>
+            <p class="subtitle">Upload Images to the <strong>Server</strong></p>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-4">
+                <form action="/uploadmultiple" enctype="multipart/form-data" method="POST">
+                    <div class="row">
+                        <div class="col-8">
+                            <input type="file" class="form-control" name="images" id="formFile" multiple>
+                        </div>
+                        <div class="col-2">
+                            <input type="submit" class="btn btn-warning" value="Upload Images">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    <div class="filters">
+        <a href="/filter/1">Version 1</a>
+        <a href="/filter/2">Version 2</a>
+        <!-- Add more links for different versions as needed -->
+    </div>
+
+        <table class="mt-5">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Last Modified</th>
+                    <th>File Version</th>
+                    <th>File Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each images}}
+                    {{#each this}}
+                        {{#if imageBase64 }}
+                            <tr>
+                                <td>{{filename}}</td>
+                                <td>{{lastModified}}</td>
+                                <td>{{version}}</td>
+                                <td>{{contentType}}</td>
+                            </tr>
+                        {{/if}}
+                    {{/each}}
+                {{/each}}
+            </tbody>
+        </table>
+
+    </div>
+</section>
