@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<<<<<<< Updated upstream
 <head>
   <meta http-equiv="content-type" content="text/html;charset=utf-8">
   <meta name="viewport" content="width=device-width, user-scalable=no">
@@ -15,19 +16,38 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/bootstrap-icons.min.css">
   <!-- website start -->
   <link rel="stylesheet" type="text/css" href="./build/website_dev/o3dv.website.min.css">
+=======
+
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <link rel="icon" type="image/png" href="assets/images/mACE_logo_favicon.ico">
+    <link rel="canonical" href="https://3dviewer.net">
+    <link rel="stylesheet" href="./style.css">
+    <title>MetaACE 3D Viewer</title>
+    <!-- meta start -->
+    <!-- meta end -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/bootstrap-icons.min.css">
+    <!-- website start -->
+    <link rel="stylesheet" type="text/css" href="./build/website_dev/o3dv.website.min.css">
+>>>>>>> Stashed changes
     <link rel="stylesheet" href="./source/website/css/custom.css">
     <script type="text/javascript" src="./build/website_dev/o3dv.website.min.js"></script>
-  <!-- website end -->
-  <!-- plugins start -->
-  <!-- plugins end -->
-  <!-- analytics start -->
-  <script type="text/javascript">
-    OV.SetWebsiteEventHandler((eventName, eventLabel, eventParams) => {
-      console.log({
-        eventName: eventName,
-        eventLabel: eventLabel,
-        eventParams: eventParams
+    <!-- website end -->
+    <!-- plugins start -->
+    <!-- plugins end -->
+    <!-- analytics start -->
+    <script type="text/javascript">
+      OV.SetWebsiteEventHandler((eventName, eventLabel, eventParams) =>
+      {
+        console.log({
+          eventName: eventName,
+          eventLabel: eventLabel,
+          eventParams: eventParams
+        });
       });
+<<<<<<< Updated upstream
     });
   </script>
   
@@ -129,31 +149,72 @@
                             
                                 <img src="./user.png" alt="" style="height: 28px; position: absolute; top: 15px; right: 2%;border-left: 1px solid #888888; padding-left: 10px; " onclick="toggleMenu()">
                         
+=======
+    </script>
+>>>>>>> Stashed changes
 
 
-                        </p>
-                    </div>
+
+    <!-- analytics end -->
+    <!-- website init start -->
+    <script type="text/javascript">
+      OV.StartWebsite('../libs');
+    </script>
+    <!-- website init end -->
+  </head>
+
+  <body style="background-color:white;">
+    <input type="file" name="fieldName" multiple>
+    <button id="uploadButton" onclick="uploadFiles()">Upload</button>
+
+    <div class="header" id="header">
+      <div class="title">
+        <div class="title_left">
+          <p>
+            <a href="inde2.html">
+              <img style="width: 165px; float: left; margin-top: 6px;" class="logo_image"
+                src="assets/images/mACE_logo_text.png" />
+            </a>
+          <p style="position: absolute; right: 85px; top: 18px;"><a href="filemangment.html" onclick="toggleProject()"
+              style="color: black; font-weight: bold; text-decoration: none;">&#x2630;</a></p>
+
+          <img src="./user.png" alt=""
+            style="height: 28px; position: absolute; top: 15px; right: 2%;border-left: 1px solid #888888; padding-left: 10px; "
+            onclick="toggleMenu()">
+
+
+
+          </p>
+        </div>
+      </div>
+
+
+      <script>
+        // JavaScript code to toggle the visibility of the dropdown menu
+        const userIcon = document.getElementById('userIcon');
+        const subMenuWrap = document.getElementById('subMenu');
+
+        userIcon.addEventListener('click', () =>
+        {
+          subMenuWrap.classList.toggle('active');
+        });
+      </script>
+
+
+      <div class="toolbar" id="toolbar"></div>
     </div>
-   
-  
-  <script>
-    // JavaScript code to toggle the visibility of the dropdown menu
-  const userIcon = document.getElementById('userIcon');
-  const subMenuWrap = document.getElementById('subMenu');
-
-  userIcon.addEventListener('click', () => {
-    subMenuWrap.classList.toggle('active');
-  });
-</script>
-
-
-    <div class="toolbar" id="toolbar"></div>
-  </div>
-  <div class="main" id="main">
-    <div class="main_left_container only_full_width" id="main_left_container">
-      <div class="main_navigator ov_panel_set_container" id="main_navigator"></div>
-      <div class="main_splitter" id="main_navigator_splitter"></div>
+    <div class="main" id="main">
+      <div class="main_left_container only_full_width" id="main_left_container">
+        <div class="main_navigator ov_panel_set_container" id="main_navigator"></div>
+        <div class="main_splitter" id="main_navigator_splitter"></div>
+      </div>
+      <div class="main_viewer" id="main_viewer"></div>
+      <div class="main_right_container only_full_width" id="main_right_container">
+        <div class="main_splitter" id="main_sidebar_splitter"></div>
+        <div class="main_sidebar ov_panel_set_right_container" id="main_sidebar"></div>
+      </div>
     </div>
+<<<<<<< Updated upstream
     <div class="main_viewer" id="main_viewer"></div>
     <div class="main_right_container only_full_width" id="main_right_container">
       <div class="main_splitter" id="main_sidebar_splitter"></div>
@@ -167,12 +228,21 @@
   <div id="intro">
     <div class="sidebar">
       <a href="#" class="toggle" onclick="openTab(event, 'box1')">
+=======
+
+    <div class="sidebar">
+      <input type="file" id="uploadInput" multiple>
+      <button id="uploadButton" onclick="uploadFiles()">Upload</button>
+
+      <a href="#">
+>>>>>>> Stashed changes
         <span>OverView</span>
       </a>
       <a href="#" class="toggle" onclick="openTab(event, 'box2')">
         <span>File Managment</span>
       </a>
     </div>
+<<<<<<< Updated upstream
     <div class="box">
     <div id="box1" class="box-content" style="margin-left: 60px; margin-right: 19px; border-radius: 20px; overflow: hidden;">
       <h2>OverView</h2>
@@ -222,11 +292,60 @@
     <p><a href="profile.html" style="color: #525252;">Account Settings</a></p>
 </a>
 <hr>
+=======
+    <div style="margin-left: 169px; margin-right: 19px; border-radius: 20px; overflow: hidden;">
+      <table style="margin-left: 169px; margin-right: 19px; border-radius: 20px; overflow: hidden;">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Last Modified</th>
+            <th>File version</th>
+            <th>File Type</th>
+          </tr>
+        </thead>
+        <tbody id="data-table-body" style="z-index: 99999;">
+>>>>>>> Stashed changes
 
-<a href="index.html" class="sub-menu-link" style="text-align: left;">
-    <p>Log out</p>
-</a>
+          <!-- Add more rows as needed -->
+          <tr>
+            <td>Paradise</td>
+            <td>Nov 21, 2017</td>
+            <td>#1234</td>
+            <td>----</td>
+          </tr>
+          <tr>
+            <td>Row 2, Column 1</td>
+            <td>Row 2, Column 2</td>
+            <td>Row 2, Column 3</td>
+            <td>---</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+
+
+    <div class="sub-menu-wrap" id="subMenu">
+      <div class="sub-menu">
+        <div class="user-info">
+          <img src="./user.png">
+          <h3>Radhika </h3>
         </div>
+        <hr>
+        <a class="sub-menu-link account-tab" data-toggle="pill" href="profile.html" role="tab" aria-controls="account"
+          aria-selected="true">
+          <p><a href="profile.html" style="color: #525252;">Account Settings</a></p>
+        </a>
+        <hr>
+
+        <a href="index.html" class="sub-menu-link" style="text-align: left;">
+          <p>Log out</p>
+        </a>
+
+      </div>
+    </div>
+    <div id="intro">
     </div>
     <div class="sub-folder-wrap" id="subFolder" style="background-color: #F5F5F5;">
       <a href="#" class="sub-folder-link">
@@ -244,23 +363,58 @@
       </a>
     </div>
     <script>
-        // Function to delete the cookie and redirect to the index.html page
-        function deleteCookieAndRedirect() {
-            fetch('/delete-cookie')
-                .then(response => response.json())
-                .then(data => {
-                    if (data.cookieDeleted) {
-                        window.location.href = 'index.html'; // Redirect to the index.html page after deleting the cookie
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
+      // Function to delete the cookie and redirect to the index.html page
+      function deleteCookieAndRedirect()
+      {
+        fetch('/delete-cookie')
+          .then(response => response.json())
+          .then(data =>
+          {
+            if (data.cookieDeleted) {
+              window.location.href = 'index.html'; // Redirect to the index.html page after deleting the cookie
+            }
+          })
+          .catch(error =>
+          {
+            console.error('Error:', error);
+          });
 
-                
+
+      }
+
+
+    </script>
+    <script>
+      function uploadFiles()
+      {
+        const input = document.getElementById('uploadInput');
+        const files = input.files;
+
+        const formData = new FormData();
+        for (let i = 0; i < files.length; i++) {
+          formData.append('files', files[i]);
         }
 
-
+        fetch('http://localhost:3000/fileUpload/uploadmultiple', {
+          method: 'POST',
+          body: formData
+        })
+          .then(response =>
+          {
+            if (response.ok) {
+              console.log('Files uploaded successfully');
+              // Perform any additional actions after successful upload
+            } else {
+              console.error('Failed to upload files');
+              // Handle upload failure
+            }
+          })
+          .catch(error =>
+          {
+            console.error('Error:', error);
+            // Handle error
+          });
+      }
     </script>
     <script>
       // Fetch the JSON data from the API
@@ -304,6 +458,7 @@
         });
     </script>
 
+<<<<<<< Updated upstream
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -330,3 +485,12 @@
   document.getElementsByClassName("toggle")[0].click();
 </script>
 </html>
+=======
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  </body>
+  <script src="./script.js"></script>
+
+</html>
+>>>>>>> Stashed changes

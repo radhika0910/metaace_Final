@@ -21,12 +21,12 @@ const uploadSchema = new mongoose.Schema({
   lastModified: {
     type: Date,
     default: Date.now
-  },
-  userName: {
-    type: String,
-    unique: true,
-    required: false
   }
+  // userName: {
+  //   type: String,
+  //   unique: true,
+  //   required: false
+  // }
 });
 
 const UploadModel = mongoose.model('uploads', uploadSchema);
