@@ -54,7 +54,7 @@ app.use((req, res, next) => {
 
 // Routes
 
-app.use('/fileUpload', fileRouter);
+app.use('/', fileRouter);
 
 
 app.post('/signup', async (req, res) => {

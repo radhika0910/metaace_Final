@@ -84,6 +84,7 @@
 		"express-openid-connect": "^2.16.0",
 		"express-session": "^1.17.3",
 		"fflate": "0.8.0",
+		"fs": "^0.0.1-security",
 		"i": "^0.3.7",
 		"jsonwebtoken": "^9.0.1",
 		"mongoose": "^7.3.1",

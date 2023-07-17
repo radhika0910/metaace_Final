@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -172,9 +173,8 @@
   <div id="intro">
 
     <div class="sidebar">
-      <input type="file" id="uploadInput" multiple>
+      <input type="file" id="open_file" name="files" multiple>
       <button id="uploadButton" onclick="uploadFiles()">Upload</button>
-
       <a href="#" class="toggle" onclick="openTab(event, 'box1')">
         <span>OverView</span>
       </a>
@@ -278,39 +278,41 @@
     </script>
     <script>
       function uploadFiles()
-      {
-        const input = document.getElementById('uploadInput');
-        const files = input.files;
+        {
+          const input = document.getElementById('open_file');
+          const files = Array.from(input.files);
 
-        const formData = new FormData();
-        for (let i = 0; i < files.length; i++) {
-          formData.append('files', files[i]);
+          const formData = new FormData();
+          files.forEach((file, index) =>
+          {
+            formData.append(`file${index}`, file);
+          });
+
+          fetch('http://localhost:3000/uploadmultiple', {
+            method: 'POST',
+            body: formData
+          })
+            .then(response =>
+            {
+              if (response.ok) {
+                console.log('Files uploaded successfully');
+                // Perform any additional actions after successful upload
+              } else {
+                console.error('Failed to upload files');
+                // Handle upload failure
+              }
+            })
+            .catch(error =>
+            {
+              console.error('Error:', error);
+              // Handle error
+            });
         }
 
-        fetch('http://localhost:3000/fileUpload/uploadmultiple', {
-          method: 'POST',
-          body: formData
-        })
-          .then(response =>
-          {
-            if (response.ok) {
-              console.log('Files uploaded successfully');
-              // Perform any additional actions after successful upload
-            } else {
-              console.error('Failed to upload files');
-              // Handle upload failure
-            }
-          })
-          .catch(error =>
-          {
-            console.error('Error:', error);
-            // Handle error
-          });
-      }
     </script>
     <script>
       // Fetch the JSON data from the API
-      fetch('http://localhost:3000/fileUpload')
+      fetch('http://localhost:3000/')
         .then(response => response.json())
         .then(data =>
         {
