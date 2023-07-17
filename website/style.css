@@ -94,7 +94,7 @@ li a {
 	right: 0.5%;
 	width: 320px;
 	max-height: 0px;
-	overflow-y: scroll;
+	overflow: hidden;
 	transition: max-height 0.5s;
 }
 
@@ -149,10 +149,10 @@ li a {
 .sub-project-wrap {
 	position: absolute;
 	top: 5%;
-	left: 10%;
+	right: 0%;
 	width: 150px;
 	max-height: 0px;
-	overflow-y: scroll;
+	overflow: hidden;
 	transition: max-height 0.5s;
 }
 
