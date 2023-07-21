@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>MetaACE 3D Viewer</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+		<link rel="stylesheet" href="./style.css">
+		<script src="https://unpkg.com/phosphor-icons"></script>
+		<style>
+			/* Add padding to the table headers and table cells */
+			th,
+			td {
+				padding: 10px;
+				/* Adjust the padding value as needed */
+			}
+
+			/* Add padding to each table row */
+			#data-table-body tr {
+				padding: 10px;
+				/* Adjust the padding value as needed */
+			}
+
+			/* Add a border at the bottom of each table row */
+			#data-table-body tr {
+				border-bottom: 2px solid #ccc;
+				/* Adjust the border color and style as needed */
+			}
+
+			th {
+				font-weight: bold;
+			}
+
+			/* Optional: Style the table header for better visual appearance */
+			th {
+				background-color: #f2f2f2;
+				/* Light gray background */
+				   text-align: left;
+			}
+
+			/* ... Existing CSS styles ... */
+
+			/* Hide the dropdown content by default */
+			.dropdown-content {
+				display: none;
+				position: absolute;
+				background-color: #f9f9f9;
+				min-width: 160px;
+				box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+				padding: 12px 16px;
+				z-index: 9;
+			}
+ /* Sidebar styles */
+  .sidebar {
+    position: fixed;
+    top: 300px; /* Set the top position to 350px */
+    right: 0;
+    width: 350px;
+    height: 65%;
+    background-color: var(--c-background-primary);
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.05), 0 5px 15px 0 rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+	display:none;
+  }
+
+  .sidebar-content {
+    overflow-y: auto;
+    max-height: 100%;
+    padding: 5px; /* Add padding of 5 pixels from every side */
+  }
+
+
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 50px;
+    cursor: pointer;
+    color: #888;
+  }
+
+
+   .content-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .content-panel {
+            flex: 0 0 250px; /* Fixed width of 250px */
+        }
+
+        .content-main {
+            flex: 1; /* Takes up remaining space */
+            margin-left: 10px; /* Add some space between panel and main */
+		}
+
+
+		/* Show the pop-up container */
+.popup-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  display: none;
+}
+
+/* Style for the pop-up card */
+.popup-card {
+  padding: 20px;
+  background-color: #f2f2f2;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  text-align: center;
+}
+			/* ... Existing CSS styles ... */
+		</style>
+	</head>
+
+	<body>
+		<header class="header">
+			<div class="header-content responsive-wrapper">
+				<div class="header-logo">
+					<div class="title_left">
+						<p>
+							<a href="../inde2.html">
+								<img style="width: 165px; float: left; margin-top: 6px;" class="logo_image"
+									src="../assets/images/mACE_logo_text.png" />
+							</a>
+						<p style="position: absolute; right: 85px; top: 18px;"><a href="../filemangment.html"
+								onclick="toggleProject()"
+								style="color: black; font-weight: bold; text-decoration: none;">
+								<div>
+									<svg xmlns="http://www.w3.org/2000/svg"
+										style="height:40px; position: absolute; right:70px; top:8.5px; "
+										viewBox="0 0 256 256" id="dots-nine">
+										<rect width="256" height="256" fill="none"></rect>
+										<circle cx="60" cy="60" r="14"></circle>
+										<circle cx="128" cy="60" r="14"></circle>
+										<circle cx="196" cy="60" r="14"></circle>
+										<circle cx="60" cy="128" r="14"></circle>
+										<circle cx="128" cy="128" r="14"></circle>
+										<circle cx="196" cy="128" r="14"></circle>
+										<circle cx="60" cy="196" r="14"></circle>
+										<circle cx="128" cy="196" r="14"></circle>
+										<circle cx="196" cy="196" r="14"></circle>
+									</svg>
+								</div>
+							</a></p>
+
+						<img src="../user.png" alt=""
+							style="height: 28px; position: absolute; top: 15px; right: 2%;border-left: 1px solid #888888; padding-left: 10px; "
+							onclick="toggleMenu()">
+						</p>
+					</div>
+				</div>
+
+				<div class="header-navigation">
+					<!--	<nav class="header-navigation-links">
+            <a href="#"> Home </a>
+            <a href="#"> Dashboard </a>
+            <a href="#"> Projects </a>
+            <a href="#"> Tasks </a>
+            <a href="#"> Reporting </a>
+            <a href="#"> Users </a>
+          </nav> -->
+				</div>
+				<a href="#" class="button">
+					<i class="ph-list-bold"></i>
+					<span>Menu</span>
+				</a>
+			</div>
+		</header>
+
+		<main class="main">
+			<div class="responsive-wrapper">
+				<div class="content-header">
+					<div class="content-header-intro">
+						<h2>OverView</h2>
+					</div>
+					<div class="content-header-actions">
+						<a href="#" class="button">
+							<i class="ph-faders-bold"></i>
+							<span>Document Mangement</span>
+						</a>
+						<a href="#" class="button" onclick="showFileInput()">
+							<i class="ph-plus-bold"></i>
+							<span>Add files</span>
+						</a>
+						<input type="file" id="file-input" style="display: none;" multiple> <!-- Hidden file input -->
+					
+						<div class="popup-container hidden" id="popup-container">
+							<div class="card popup-card">
+								<h3>File Saved Successfully</h3>
+								<p>Your file has been saved successfully.</p>
+								<button onclick="closePopup()">Close</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="content">
+					<div class="content-panel">
+						<div class="vertical-tabs">
+							<a href="#" class="active">OverView</a>
+							<a href="#">Document Mangement</a>
+						</div>
+					</div>
+					<div class="content-main">
+						<div class="card">
+							<table>
+								<thead>
+									<tr>
+										<th>Name</th>
+										<th>Last Modified</th>
+										<th>File version</th>
+										<th>File Type</th>
+									</tr>
+								</thead>
+								<tbody id="data-table-body">
+									<!-- Add more rows as needed -->
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Sidebar HTML -->
+			<div class="sidebar hidden" id="sidebar">
+				<div class="sidebar-content" id="sidebar-content">
+					<!-- Data will be dynamically added here when the ellipsis icon is clicked -->
+				</div>
+				<span class="close-button" onclick="closeSidebar()">&times;</span>
+			</div>
+
+
+			
+		</main>
+
+		<script>
+
+
+
+
+			 // Function to show the pop-up message
+				function showPopup()
+				{
+					const popupContainer = document.getElementById('popup-container');
+					popupContainer.style.display = 'block';
+				}
+
+				// Function to close the pop-up message
+				function closePopup()
+				{
+					const popupContainer = document.getElementById('popup-container');
+					popupContainer.style.display = 'none';
+				}
+
+			function closeSidebar()
+				{
+					const sidebar = document.getElementById('sidebar');
+					sidebar.style.display = 'none';
+				}
+			// Function to show the file input dialog when "Add files" button is clicked
+			function showFileInput()
+			{
+				const fileInput = document.getElementById('file-input');
+				fileInput.click();
+			}
+
+			// Function to handle file upload when files are selected
+			document.getElementById('file-input').addEventListener('change', (event) =>
+			{
+				const files = event.target.files;
+
+				// Create a new FormData object to store the files
+				const formData = new FormData();
+
+				// Append each selected file to the FormData object
+				for (let i = 0; i < files.length; i++) {
+					formData.append('files', files[i]);
+				}
+
+				// Send the file data to the API endpoint using fetch
+				fetch('http://localhost:3000/uploadmultiple', {
+					method: 'POST',
+					body: formData,
+				})
+					.then(response => response.json())
+					.then(data =>
+					{
+						// If the upload was successful, you can update the table or display a success message
+						console.log('Upload successful:', data);
+						showPopup();
+						// Here you can refresh the table or update it with the new data
+					})
+					.catch(error =>
+					{
+						console.error('Error:', error);
+						// Handle the error if the upload fails
+					});
+			});
+
+			// Function to show/hide the dropdown and sidebar when ellipsis icon is clicked
+			function toggleDropdown(event)
+				{
+					const dropdown = event.target.parentElement.nextElementSibling;
+					const sidebar = document.getElementById('sidebar');
+					const sidebarContent = document.getElementById('sidebar-content');
+					const rowData = event.target.parentElement.parentElement.dataset; // Get the dataset of the row
+
+					if (dropdown.style.display === 'block') {
+						dropdown.style.display = 'none';
+						sidebar.style.display = 'none';
+					} else {
+						// Set the sidebar content with the row data and heading "Details"
+						sidebarContent.innerHTML = `
+            <h3 style="font-weight: bold; padding: 5px;margin-top: 10px;margin-left: 10px;">Details</h3>
+            <p style="padding: 5px;margin-left: 10px;">Name: ${rowData.name}</p>
+            <p style="padding: 5px;margin-left: 10px;">Last Modified: ${rowData.lastModified}</p>
+            <p style="padding: 5px;margin-left: 10px;">File version: ${rowData.version}</p>
+            <p style="padding: 5px;margin-left: 10px;">File Type: ${rowData.contentType}</p>
+            <!-- Add more data fields as needed -->
+        `;
+
+						dropdown.style.display = 'block';
+						sidebar.style.display = 'block';
+					}
+				}
+
+			// Fetch the JSON data from the API
+			fetch('http://localhost:3000/')
+				.then((response) => response.json())
+				.then((data) =>
+				{
+					// Get a reference to the table body
+					const tableBody = document.getElementById('data-table-body');
+
+					// Loop through the data and create table rows
+					data.forEach((file) =>
+					{
+						// Create a new row element
+						const row = document.createElement('tr');
+
+						// Create and populate table cells for each data field
+						const nameCell = document.createElement('td');
+						const fileName = file.filename.split('.').slice(0, -1).join('.'); // Get the name before the file extension
+						nameCell.textContent = fileName;
+						row.appendChild(nameCell);
+
+						const lastModifiedCell = document.createElement('td');
+						const lastModifiedDate = new Date(file.lastModified).toLocaleDateString(); // Extract only the date part
+						lastModifiedCell.textContent = lastModifiedDate;
+						row.appendChild(lastModifiedCell);
+
+						const versionCell = document.createElement('td');
+						versionCell.textContent = file.version;
+						row.appendChild(versionCell);
+
+						const typeCell = document.createElement('td');
+						typeCell.textContent = file.contentType;
+						row.appendChild(typeCell);
+
+						// Create the ellipsis icon cell
+						const ellipsisCell = document.createElement('td');
+						const ellipsisIcon = document.createElement('i');
+						ellipsisIcon.className = 'ph-dots-three-vertical'; // Use the class name of the desired Phosphor icon
+						ellipsisIcon.addEventListener('click', toggleDropdown); // Add click event listener to the ellipsis icon
+						ellipsisCell.appendChild(ellipsisIcon);
+						row.appendChild(ellipsisCell);
+
+						// Add the row data as data attributes to the row element
+						row.dataset.name = fileName;
+						row.dataset.lastModified = lastModifiedDate;
+						row.dataset.version = file.version;
+						row.dataset.contentType = file.contentType;
+
+						// Append the row to the table body
+						tableBody.appendChild(row);
+
+						// Add a horizontal line after each row (except the last one)
+						if (data.indexOf(file) !== data.length - 1) {
+							const hr = document.createElement('hr');
+							row.appendChild(hr);
+						}
+					});
+				})
+				.catch((error) =>
+				{
+					console.error('Error:', error);
+				});
+		</script>
+		<script src='https://unpkg.com/phosphor-icons'></script>
+		<script src="./script.js"></script>
+	</body>
+
+</html>

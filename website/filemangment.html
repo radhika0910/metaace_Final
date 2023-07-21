@@ -245,37 +245,19 @@
         <p>New Folder</p>
       </a>
       <hr>
-      <a href="#" class="sub-folder-link">
-        <i class="fas fa-file-upload"></i>
-        <p>File Upload</p>
-      </a>
+    <a href="#" class="sub-folder-link">
+      <i class="fas fa-file-upload"></i>
+      <p>File Upload</p>
+      <input type="file" id="open_file" name="files" multiple style="display: none;">
+    </a>
+    <button id="uploadButton" onclick="document.getElementById('open_file').click()">Upload</button>
+
       <a href="#" class="sub-folder-link">
         <i class="fas fa-folder-plus"></i>
         <p>Folder Upload</p>
       </a>
     </div>
-    <script>
-      // Function to delete the cookie and redirect to the index.html page
-      function deleteCookieAndRedirect()
-      {
-        fetch('/delete-cookie')
-          .then(response => response.json())
-          .then(data =>
-          {
-            if (data.cookieDeleted) {
-              window.location.href = 'index.html'; // Redirect to the index.html page after deleting the cookie
-            }
-          })
-          .catch(error =>
-          {
-            console.error('Error:', error);
-          });
-
-
-      }
-
-
-    </script>
+    
     <script>
       function uploadFiles()
         {

@@ -53,7 +53,8 @@ export const uploads = (req, res, next) => {
 
   let imgArray = files.map((file) => {
     let img = fs.readFileSync(file.path);
-    return (encode_image = img.toString('base64'));
+    let encode_image = img.toString('base64');
+    return encode_image;
   });
 
   let result = imgArray.map((src, index) => {
